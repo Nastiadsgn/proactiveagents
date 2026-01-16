@@ -1,0 +1,2450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Untitled notebook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Google+Sans+Text:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* ElevenLabs-inspired color palette */
+      --bg-primary: #ffffff;
+      --bg-secondary: #f9fafb;
+      --bg-tertiary: #f3f4f6;
+      --text-primary: #111827;
+      --text-secondary: #6b7280;
+      --text-tertiary: #9ca3af;
+      --border-color: #e5e7eb;
+      --accent-blue: #3b82f6;
+      --accent-purple: #8b5cf6;
+      --accent-orange: #f97316;
+      --accent-green: #10b981;
+      --accent-red: #ef4444;
+      --accent-teal: #14b8a6;
+      --accent-pink: #ec4899;
+      --accent-yellow: #f59e0b;
+      --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --radius-xl: 9999px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Google Sans Text', 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px 12px 12px;
+      border-bottom: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      height: 64px;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo {
+      width: 36px;
+      height: 36px;
+      background: transparent;
+      border: none;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .logo:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .logo svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-primary);
+    }
+
+    .header-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .header-company-name {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .header-subtitle {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      line-height: 1.3;
+    }
+
+    .header-center {
+      flex: 1;
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 24px;
+      max-width: 400px;
+    }
+
+    .header-search-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .header-search-input {
+      width: 100%;
+      padding: 8px 16px 8px 36px;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--bg-tertiary);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .header-search-input:focus {
+      background: var(--bg-tertiary);
+      box-shadow: 0 0 0 1px var(--border-color);
+    }
+
+    .header-search-input::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .header-search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      width: 16px;
+      height: 16px;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 24px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: #111827;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #1f2937;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-secondary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: background 0.2s;
+    }
+
+    .icon-btn:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6b7280;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Main Layout */
+    .main-container {
+      display: grid;
+      grid-template-columns: 380px 1fr 380px;
+      height: calc(100vh - 64px);
+      transition: grid-template-columns 0.3s ease;
+    }
+
+    .main-container.expanded-studio {
+      grid-template-columns: 280px 1fr 580px;
+    }
+
+    /* Panel Common */
+    .panel {
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--border-color);
+      overflow: hidden;
+    }
+
+    .panel:last-child {
+      border-right: none;
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 27px 20px;
+      border-bottom: 1px solid var(--border-color);
+      min-height: 56px;
+    }
+
+    .panel-title {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .main-container.expanded-studio .studio-panel .panel-header {
+      padding: 20px;
+    }
+
+    .panel-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
+    }
+
+    /* Sources Panel - Database Explorer */
+    .sources-panel {
+      background: var(--bg-primary);
+    }
+
+    .db-search-wrapper {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .db-search-input {
+      width: 100%;
+      padding: 10px 16px 10px 40px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      font-size: 13px;
+      color: var(--text-primary);
+      background: var(--bg-secondary);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    .db-search-input:focus {
+      border-color: var(--accent-blue);
+      background: var(--bg-primary);
+      box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+    }
+
+    .db-search-input::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .db-search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-tertiary);
+      width: 18px;
+      height: 18px;
+    }
+
+    .db-section {
+      margin-bottom: 20px;
+    }
+
+    .db-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .db-header:hover {
+      background: #e5e7eb;
+    }
+
+    .db-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--accent-blue);
+      flex-shrink: 0;
+    }
+
+    .db-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      flex: 1;
+    }
+
+    .db-expand {
+      width: 18px;
+      height: 18px;
+      color: var(--text-tertiary);
+      transition: transform 0.2s;
+    }
+
+    .db-header.expanded .db-expand {
+      transform: rotate(180deg);
+    }
+
+    .db-tables {
+      padding-left: 8px;
+    }
+
+    .table-item {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+      overflow: hidden;
+      background: var(--bg-primary);
+      transition: all 0.2s;
+    }
+
+    .table-item:hover {
+      border-color: var(--accent-blue);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .table-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      cursor: pointer;
+      background: var(--bg-secondary);
+      transition: background 0.2s;
+    }
+
+    .table-header:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .table-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-purple);
+      flex-shrink: 0;
+    }
+
+    .table-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      flex: 1;
+    }
+
+    .table-row-count {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      background: var(--bg-tertiary);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .table-expand {
+      width: 16px;
+      height: 16px;
+      color: var(--text-tertiary);
+      transition: transform 0.2s;
+    }
+
+    .table-item.expanded .table-expand {
+      transform: rotate(180deg);
+    }
+
+    .table-columns {
+      border-top: 1px solid var(--border-color);
+      padding: 8px 0;
+      display: none;
+    }
+
+    .table-item.expanded .table-columns {
+      display: block;
+    }
+
+    .column-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 12px 6px 28px;
+      font-size: 12px;
+      transition: background 0.15s;
+    }
+
+    .column-item:hover {
+      background: var(--bg-secondary);
+      cursor: pointer;
+    }
+
+    .column-item:active {
+      background: var(--bg-tertiary);
+    }
+
+    .column-icon {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    .column-icon.key {
+      color: var(--accent-orange);
+    }
+
+    .column-icon.text {
+      color: var(--accent-green);
+    }
+
+    .column-icon.number {
+      color: var(--accent-blue);
+    }
+
+    .column-icon.date {
+      color: var(--accent-purple);
+    }
+
+    .column-icon.bool {
+      color: var(--accent-teal);
+    }
+
+    .column-name {
+      color: var(--text-primary);
+      flex: 1;
+    }
+
+    .column-type {
+      color: var(--text-tertiary);
+      font-size: 11px;
+      font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    }
+
+    .db-connection-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: #ecfdf5;
+      border-radius: var(--radius-xl);
+      font-size: 11px;
+      color: #059669;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .db-connection-badge svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Chat Panel */
+    .chat-panel {
+      background: var(--bg-primary);
+    }
+
+    .chat-panel .panel-header {
+      justify-content: space-between;
+    }
+
+    .chat-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .chat-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 32px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .notebook-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .notebook-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .notebook-icon svg {
+      width: 28px;
+      height: 28px;
+      color: white;
+    }
+
+    .notebook-name {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .notebook-meta {
+      font-size: 13px;
+      color: var(--text-tertiary);
+    }
+
+    .summary-section {
+      margin-bottom: 0px;
+    }
+
+    .summary-text {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-primary);
+    }
+
+    .summary-text strong {
+      font-weight: 600;
+    }
+
+    .summary-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 0px;
+      padding-top: 16px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      background: var(--bg-primary);
+      font-size: 13px;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .action-btn:hover {
+      background: var(--bg-secondary);
+      border-color: var(--text-tertiary);
+    }
+
+    .action-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .action-btn-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--text-tertiary);
+      transition: all 0.2s;
+    }
+
+    .action-btn-icon:hover {
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+    }
+
+    .suggested-questions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 24px;
+    }
+
+    .question-chip {
+      display: flex;
+      align-items: center;
+      padding: 14px 18px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-primary);
+      font-size: 14px;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+    }
+
+    .question-chip:hover {
+      background: var(--bg-secondary);
+      border-color: var(--text-tertiary);
+    }
+
+    .chat-input-container {
+      padding: 16px;
+      border-top: none;
+      background: var(--bg-primary);
+    }
+
+    .chat-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 18px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      background: var(--bg-secondary);
+      transition: all 0.2s;
+    }
+
+    .chat-input-wrapper:focus-within {
+      border-color: var(--accent-blue);
+      background: var(--bg-primary);
+      box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+    }
+
+    .chat-input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .chat-input::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .source-count {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+    }
+
+    .send-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #111827;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .send-btn:hover:not(:disabled) {
+      background: #1f2937;
+    }
+
+    .send-btn:disabled {
+      background: var(--border-color);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .send-btn svg {
+      width: 16px;
+      height: 16px;
+      color: white;
+    }
+
+    /* Studio Panel */
+    .studio-panel {
+      background: var(--bg-primary);
+    }
+
+    .studio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .studio-card {
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      background: var(--bg-primary);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .studio-card:hover {
+      background: var(--bg-secondary);
+    }
+
+    .studio-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .studio-card-icon {
+      width: 24px;
+      height: 24px;
+    }
+
+    .studio-card-icon.reports { color: var(--accent-teal); }
+    .studio-card-icon.table { color: var(--accent-purple); }
+    .studio-card-icon.signals { color: var(--accent-orange); }
+    .studio-card-icon.slides { color: var(--accent-blue); }
+
+    .studio-card-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .beta-badge {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--accent-orange);
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .studio-card-edit {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+      transition: all 0.2s;
+    }
+
+    .studio-card:hover .studio-card-edit {
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+    }
+
+    .studio-card-plus {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-tertiary);
+      opacity: 0;
+      transition: opacity 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .studio-card:hover .studio-card-plus {
+      opacity: 1;
+      color: var(--text-secondary);
+    }
+
+    .studio-empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .empty-icon {
+      width: 48px;
+      height: 48px;
+      color: var(--accent-blue);
+      margin-bottom: 16px;
+    }
+
+    .empty-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+    }
+
+    .empty-description {
+      font-size: 13px;
+      color: var(--text-tertiary);
+      line-height: 1.5;
+    }
+
+    /* Related Artifacts */
+    .related-artifacts {
+      margin-top: 8px;
+    }
+
+    .related-artifacts-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      gap: 0px;
+    }
+
+    .related-artifacts-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .related-artifacts-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .related-artifact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .related-artifact-item:hover {
+      background: var(--bg-secondary);
+    }
+
+    .related-artifact-icon {
+      width: 18px;
+      height: 18px;
+      color: var(--text-tertiary);
+      flex-shrink: 0;
+    }
+
+    .related-artifact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .related-artifact-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .related-artifact-meta {
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    .related-artifact-item.generating {
+      background: linear-gradient(
+        90deg,
+        var(--bg-secondary) 0%,
+        var(--bg-tertiary) 25%,
+        var(--bg-secondary) 50%,
+        var(--bg-tertiary) 75%,
+        var(--bg-secondary) 100%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 10s ease-in-out infinite;
+      cursor: default;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200% 0;
+      }
+      100% {
+        background-position: -200% 0;
+      }
+    }
+
+    .related-artifact-item.generating .related-artifact-name {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .related-artifact-item.generating .related-artifact-meta {
+      color: var(--text-secondary);
+    }
+
+    .generating-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--accent-blue);
+      flex-shrink: 0;
+      animation: spin 1.5s linear infinite;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Report Panel */
+    .report-panel {
+      display: none;
+    }
+
+    .report-panel.visible {
+      display: block;
+    }
+
+    .studio-panel .panel-content.showing-report {
+      padding: 0;
+    }
+
+    .panel-title-breadcrumb {
+      color: var(--text-tertiary);
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .panel-title-breadcrumb:hover {
+      color: var(--text-primary);
+    }
+
+    .report-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-secondary);
+      transition: background 0.2s;
+    }
+
+    .report-close:hover {
+      background: var(--bg-tertiary);
+    }
+
+    .report-meta-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px 0px 20px;
+      border-bottom: none;
+      font-size: 11px;
+      color: var(--text-tertiary);
+    }
+
+    .report-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .report-authors {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .author-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      font-size: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 500;
+    }
+
+    .report-content {
+      padding: 20px 20px;
+    }
+
+    .report-card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .report-card-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .report-card-subtitle {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-bottom: 16px;
+    }
+
+    .report-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .report-tab {
+      padding: 6px 14px;
+      border-radius: var(--radius-xl);
+      font-size: 12px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+    }
+
+    .report-tab.active {
+      background: var(--text-primary);
+      color: white;
+    }
+
+    .report-big-number {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 32px;
+      font-weight: 400;
+      color: var(--text-primary);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .report-change {
+      font-size: 14px;
+      color: var(--accent-green);
+      font-weight: 500;
+    }
+
+    .report-progress-bar {
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #3b82f6 45.2%, #8b5cf6 45.2% 73.3%, #f97316 73.3% 91.2%, #9ca3af 91.2%);
+      margin: 16px 0 12px;
+    }
+
+    .report-legend {
+      display: flex;
+      font-size: 11px;
+      color: var(--text-secondary);
+      width: 100%;
+    }
+
+    .report-legend-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .report-legend-item:nth-child(1) {
+      width: 45.2%;
+    }
+
+    .report-legend-item:nth-child(2) {
+      width: 28.1%;
+    }
+
+    .report-legend-item:nth-child(3) {
+      width: 17.9%;
+    }
+
+    .report-legend-item:nth-child(4) {
+      width: 8.8%;
+    }
+
+    .report-legend-label {
+      color: var(--text-tertiary);
+      margin-bottom: 2px;
+    }
+
+    .report-legend-value {
+      font-weight: 500;
+    }
+
+    .report-divider {
+      height: 1px;
+      background: var(--border-color);
+      margin: 24px 0;
+    }
+
+    .report-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .report-metric {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .report-metric-label {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-bottom: 4px;
+    }
+
+    .report-metric-value {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .report-metric-trend {
+      color: var(--accent-green);
+      font-size: 14px;
+    }
+
+    .report-metric-detail {
+      font-size: 11px;
+      color: var(--text-tertiary);
+      margin-top: 2px;
+    }
+
+    .report-section-title {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    .report-text {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .report-callout {
+      border-left: 3px solid var(--text-primary);
+      padding-left: 16px;
+      margin: 16px 0;
+    }
+
+    .report-callout-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .report-callout-text {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .report-charts-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .report-chart {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+
+    .report-chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .report-chart-title {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .report-chart-subtitle {
+      font-size: 10px;
+      color: var(--text-tertiary);
+    }
+
+    .report-chart-value {
+      text-align: right;
+    }
+
+    .report-chart-number {
+      font-family: 'Google Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .report-chart-change {
+      font-size: 11px;
+      color: var(--accent-green);
+    }
+
+    .report-chart-visual {
+      height: 60px;
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      margin: 12px 0 8px;
+    }
+
+    .report-chart-bar {
+      flex: 1;
+      border-radius: 2px 2px 0 0;
+      transition: height 0.3s;
+    }
+
+    .report-chart-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9px;
+      color: var(--text-tertiary);
+    }
+
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+
+    .report-table th,
+    .report-table td {
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .report-table th {
+      font-weight: 500;
+      color: var(--text-tertiary);
+      font-size: 11px;
+    }
+
+    .report-table td {
+      color: var(--text-primary);
+    }
+
+    .report-table .positive {
+      color: var(--accent-green);
+    }
+
+    .report-guidance-list {
+      margin: 12px 0;
+    }
+
+    .report-guidance-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      padding: 4px 0;
+    }
+
+    .report-guidance-item::before {
+      content: '→';
+      color: var(--text-tertiary);
+    }
+
+    .report-guidance-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-top: 16px;
+      margin-bottom: 8px;
+    }
+
+    .report-footer-callout {
+      border-left: 3px solid var(--accent-orange);
+      padding-left: 16px;
+      margin-top: 24px;
+    }
+
+    .clickable-number {
+      cursor: pointer;
+      border-radius: 4px;
+      padding: 0 4px;
+      margin: 0 -4px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .clickable-number:hover {
+      background: var(--bg-tertiary);
+    }
+
+    /* Footer */
+    .footer-note {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-color);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-tertiary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-left">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" y1="6" x2="20" y2="6"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="18" x2="20" y2="18"/>
+        </svg>
+      </div>
+      <div class="header-title-group">
+        <span class="header-company-name">Company name</span>
+        <span class="header-subtitle">Business</span>
+      </div>
+    </div>
+    <div class="header-center">
+      <div class="header-search-wrapper">
+        <svg class="header-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/>
+          <path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <input type="text" class="header-search-input" placeholder="Search...">
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="avatar">A</div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <!-- Sources Panel -->
+    <aside class="panel sources-panel">
+      <div class="panel-header">
+        <span class="panel-title">Data Sources</span>
+      </div>
+      <div class="panel-content">
+        <div class="db-search-wrapper">
+          <svg class="db-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" class="db-search-input" placeholder="Search tables and columns...">
+        </div>
+
+        <!-- Database Section -->
+        <div class="db-section">
+          <div class="db-header expanded">
+            <svg class="db-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+            <span class="db-name">ecommerce_db</span>
+            <svg class="db-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </div>
+
+          <div class="db-tables">
+            <!-- Users Table -->
+            <div class="table-item expanded">
+              <div class="table-header">
+                <svg class="table-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M3 15h18M9 3v18"/>
+                </svg>
+                <span class="table-name">users</span>
+                <span class="table-row-count">12.4K rows</span>
+                <svg class="table-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </div>
+              <div class="table-columns">
+                <div class="column-item">
+                  <svg class="column-icon key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                  </svg>
+                  <span class="column-name">id</span>
+                  <span class="column-type">INT PK</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                  </svg>
+                  <span class="column-name">email</span>
+                  <span class="column-type">VARCHAR(255)</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                  </svg>
+                  <span class="column-name">full_name</span>
+                  <span class="column-type">VARCHAR(100)</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon date" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                  <span class="column-name">created_at</span>
+                  <span class="column-type">TIMESTAMP</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon bool" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                  </svg>
+                  <span class="column-name">is_active</span>
+                  <span class="column-type">BOOLEAN</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="table-item">
+              <div class="table-header">
+                <svg class="table-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M3 15h18M9 3v18"/>
+                </svg>
+                <span class="table-name">orders</span>
+                <span class="table-row-count">48.2K rows</span>
+                <svg class="table-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </div>
+              <div class="table-columns">
+                <div class="column-item">
+                  <svg class="column-icon key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                  </svg>
+                  <span class="column-name">id</span>
+                  <span class="column-type">INT PK</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon number" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
+                  </svg>
+                  <span class="column-name">user_id</span>
+                  <span class="column-type">INT FK</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon number" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
+                  </svg>
+                  <span class="column-name">total_amount</span>
+                  <span class="column-type">DECIMAL(10,2)</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                  </svg>
+                  <span class="column-name">status</span>
+                  <span class="column-type">ENUM</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon date" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                  <span class="column-name">order_date</span>
+                  <span class="column-type">TIMESTAMP</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Products Table -->
+            <div class="table-item">
+              <div class="table-header">
+                <svg class="table-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M3 15h18M9 3v18"/>
+                </svg>
+                <span class="table-name">products</span>
+                <span class="table-row-count">3.8K rows</span>
+                <svg class="table-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </div>
+              <div class="table-columns">
+                <div class="column-item">
+                  <svg class="column-icon key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                  </svg>
+                  <span class="column-name">id</span>
+                  <span class="column-type">INT PK</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                  </svg>
+                  <span class="column-name">name</span>
+                  <span class="column-type">VARCHAR(200)</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon number" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
+                  </svg>
+                  <span class="column-name">price</span>
+                  <span class="column-type">DECIMAL(10,2)</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon number" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
+                  </svg>
+                  <span class="column-name">category_id</span>
+                  <span class="column-type">INT FK</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Categories Table -->
+            <div class="table-item">
+              <div class="table-header">
+                <svg class="table-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M3 15h18M9 3v18"/>
+                </svg>
+                <span class="table-name">categories</span>
+                <span class="table-row-count">24 rows</span>
+                <svg class="table-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </div>
+              <div class="table-columns">
+                <div class="column-item">
+                  <svg class="column-icon key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                  </svg>
+                  <span class="column-name">id</span>
+                  <span class="column-type">INT PK</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                  </svg>
+                  <span class="column-name">name</span>
+                  <span class="column-type">VARCHAR(100)</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon text" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+                  </svg>
+                  <span class="column-name">slug</span>
+                  <span class="column-type">VARCHAR(100)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Order Items Table -->
+            <div class="table-item">
+              <div class="table-header">
+                <svg class="table-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <path d="M3 9h18M3 15h18M9 3v18"/>
+                </svg>
+                <span class="table-name">order_items</span>
+                <span class="table-row-count">156K rows</span>
+                <svg class="table-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </div>
+              <div class="table-columns">
+                <div class="column-item">
+                  <svg class="column-icon key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/>
+                  </svg>
+                  <span class="column-name">id</span>
+                  <span class="column-type">INT PK</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon number" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
+                  </svg>
+                  <span class="column-name">order_id</span>
+                  <span class="column-type">INT FK</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon number" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
+                  </svg>
+                  <span class="column-name">product_id</span>
+                  <span class="column-type">INT FK</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon number" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
+                  </svg>
+                  <span class="column-name">quantity</span>
+                  <span class="column-type">INT</span>
+                </div>
+                <div class="column-item">
+                  <svg class="column-icon number" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 9h16M4 15h16M10 3L8 21M16 3l-2 18"/>
+                  </svg>
+                  <span class="column-name">unit_price</span>
+                  <span class="column-type">DECIMAL(10,2)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Chat Panel -->
+    <section class="panel chat-panel">
+      <div class="panel-header">
+        <span class="panel-title">Chat</span>
+        <div class="chat-header-actions">
+        </div>
+      </div>
+
+      <div class="chat-content">
+        <div class="summary-section">
+          <p class="summary-text">
+            This dataset contains <strong>ecommerce_db</strong> with comprehensive sales and customer data. The analysis reveals <strong>12,400 active users</strong> generating <strong>48,200 orders</strong> across <strong>24 product categories</strong>. Key insights show that the <strong>Electronics</strong> and <strong>Fashion</strong> categories drive <strong>62% of total revenue</strong>, while <strong>repeat customers</strong> account for <strong>78% of all transactions</strong>. The <strong>order_items</strong> table with 156K records enables detailed basket analysis, revealing an average of <strong>3.2 items per order</strong>. Notable trends include a <strong>23% increase</strong> in Q4 sales and strong correlation between <strong>user tenure</strong> and <strong>average order value</strong>.
+          </p>
+
+          <div class="summary-actions">
+            <button class="action-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3zM7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/>
+              </svg>
+            </button>
+            <button class="action-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 15v4a3 3 0 003 3l4-9V2H5.72a2 2 0 00-2 1.7l-1.38 9a2 2 0 002 2.3zm7-13h2.67A2.31 2.31 0 0122 4v7a2.31 2.31 0 01-2.33 2H17"/>
+              </svg>
+            </button>
+            <button class="action-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 1l4 4-4 4"/>
+                <path d="M3 11V9a4 4 0 014-4h14"/>
+                <path d="M7 23l-4-4 4-4"/>
+                <path d="M21 13v2a4 4 0 01-4 4H3"/>
+              </svg>
+            </button>
+            <button class="action-btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="suggested-questions">
+          <button class="question-chip">
+            What are the top-selling products by revenue in the last quarter?
+          </button>
+          <button class="question-chip">
+            Which customer segments have the highest lifetime value and retention rates?
+          </button>
+          <button class="question-chip">
+            How does order frequency correlate with product category preferences?
+          </button>
+        </div>
+      </div>
+
+      <div class="chat-input-container">
+        <div class="chat-input-wrapper">
+          <input type="text" class="chat-input" placeholder="Start typing...">
+          <button class="send-btn" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio Panel -->
+    <aside class="panel studio-panel">
+      <div class="panel-header">
+        <span class="panel-title" id="studio-panel-title">Artifacts</span>
+        <button class="report-close" id="report-close-header" style="display: none;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+      <div class="panel-content" id="studio-panel-content">
+        <div class="studio-default-content" id="studio-default-content">
+        <div class="studio-grid">
+          <div class="studio-card" data-type="report" data-title="Generating Report..." data-description="Analyzing data and creating comprehensive report">
+            <div class="studio-card-content">
+              <svg class="studio-card-icon reports" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="16" y1="13" x2="8" y2="13"/>
+                <line x1="16" y1="17" x2="8" y2="17"/>
+                <polyline points="10 9 9 9 8 9"/>
+              </svg>
+              <span class="studio-card-title">Report</span>
+            </div>
+            <div class="studio-card-plus">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="studio-card" data-type="table" data-title="Generating Table..." data-description="Structuring data into an interactive table view">
+            <div class="studio-card-content">
+              <svg class="studio-card-icon table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>
+              </svg>
+              <span class="studio-card-title">Table</span>
+            </div>
+            <div class="studio-card-plus">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="studio-card" data-type="signals" data-title="Generating Signals..." data-description="Identifying key trends and anomalies in data">
+            <div class="studio-card-content">
+              <svg class="studio-card-icon signals" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+              <span class="studio-card-title">Trends</span>
+            </div>
+            <div class="studio-card-plus">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="studio-card" data-type="slides" data-title="Generating Slides..." data-description="Creating presentation slides from insights">
+            <div class="studio-card-content">
+              <svg class="studio-card-icon slides" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+              <span class="studio-card-title">Slides</span>
+            </div>
+            <div class="studio-card-plus">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="5" x2="12" y2="19"/>
+                <line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="related-artifacts">
+          <div class="related-artifacts-header">
+            <span class="related-artifacts-title">Related artifacts</span>
+          </div>
+          <div class="related-artifacts-list">
+            <div class="related-artifact-item generating" id="generating-item" style="display: none;">
+              <div class="related-artifact-info">
+                <span class="related-artifact-name" id="generating-title">Generating...</span>
+                <span class="related-artifact-meta" id="generating-description">Come back in a few minutes</span>
+              </div>
+              <svg class="generating-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <circle cx="12" cy="12" r="9" stroke-opacity="0.2"/>
+                <path d="M21 12a9 9 0 0 0-9-9"/>
+              </svg>
+            </div>
+            <div class="related-artifact-item">
+              <div class="related-artifact-info">
+                <span class="related-artifact-name">Q4 Sales Analysis</span>
+                <span class="related-artifact-meta">Report · 2 days ago</span>
+              </div>
+            </div>
+            <div class="related-artifact-item">
+              <div class="related-artifact-info">
+                <span class="related-artifact-name">Customer Segments</span>
+                <span class="related-artifact-meta">Table · 5 days ago</span>
+              </div>
+            </div>
+            <div class="related-artifact-item">
+              <div class="related-artifact-info">
+                <span class="related-artifact-name">Revenue Trends</span>
+                <span class="related-artifact-meta">Signals · 1 week ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+        <!-- Report View (hidden by default) -->
+        <div class="report-panel" id="report-panel">
+    <div class="report-meta-bar">
+      <div class="report-authors">
+        <span class="author-dot" style="background: #3b82f6;">J</span>
+        <span class="author-dot" style="background: #10b981;">S</span>
+        <span class="author-dot" style="background: #f97316;">M</span>
+      </div>
+      <span class="report-meta-item">Dec 26, 2024</span>
+      <span class="report-meta-item">Q4 FY2024</span>
+    </div>
+    
+    <div class="report-content">
+      <!-- Revenue Mix Card -->
+      <div class="report-card">
+        <div class="report-card-title">Revenue Mix</div>
+        <div class="report-card-subtitle">Total revenue by segment, Q4 2024</div>
+        
+        <div class="report-tabs">
+          <button class="report-tab active">Total Revenue</button>
+          <button class="report-tab">Subscription</button>
+          <button class="report-tab">Services</button>
+          <button class="report-tab">Licensing</button>
+        </div>
+        
+        <div class="report-big-number">
+          <span class="clickable-number">$287M</span> <span class="report-change">↑ <span class="clickable-number">34%</span></span>
+        </div>
+        
+        <div class="report-progress-bar"></div>
+        
+        <div class="report-legend">
+          <div class="report-legend-item">
+            <span class="report-legend-label">Enterprise</span>
+            <span class="report-legend-value"><span class="clickable-number">45.2%</span></span>
+          </div>
+          <div class="report-legend-item">
+            <span class="report-legend-label">Mid Market</span>
+            <span class="report-legend-value"><span class="clickable-number">28.1%</span></span>
+          </div>
+          <div class="report-legend-item">
+            <span class="report-legend-label">SMB</span>
+            <span class="report-legend-value"><span class="clickable-number">17.9%</span></span>
+          </div>
+          <div class="report-legend-item">
+            <span class="report-legend-label">Other</span>
+            <span class="report-legend-value"><span class="clickable-number">8.8%</span></span>
+          </div>
+        </div>
+        
+        <div class="report-divider"></div>
+        
+        <div class="report-metrics-grid">
+          <div class="report-metric">
+            <span class="report-metric-label">Revenue Growth</span>
+            <span class="report-metric-value"><span class="report-metric-trend">↗</span><span class="clickable-number">34%</span></span>
+            <span class="report-metric-detail">YoY growth, Q4 2024</span>
+          </div>
+          <div class="report-metric">
+            <span class="report-metric-label">Net Revenue Retention</span>
+            <span class="report-metric-value"><span class="report-metric-trend">↗</span><span class="clickable-number">128%</span></span>
+            <span class="report-metric-detail">enterprise segment, Q4 2024</span>
+          </div>
+          <div class="report-metric">
+            <span class="report-metric-label">Gross Margin</span>
+            <span class="report-metric-value"><span class="clickable-number">78%</span></span>
+            <span class="report-metric-detail">operating efficiency, Q4 2024</span>
+          </div>
+          <div class="report-metric">
+            <span class="report-metric-label">Total Customers</span>
+            <span class="report-metric-value"><span class="clickable-number">2,847</span></span>
+            <span class="report-metric-detail">active accounts, Q4 2024</span>
+          </div>
+          <div class="report-metric">
+            <span class="report-metric-label">Enterprise Customers</span>
+            <span class="report-metric-value"><span class="report-metric-trend">↗</span><span class="clickable-number">18%</span></span>
+            <span class="report-metric-detail">YoY growth, $100K+ contracts</span>
+          </div>
+          <div class="report-metric">
+            <span class="report-metric-label">Free Cash Flow</span>
+            <span class="report-metric-value"><span class="report-metric-trend">↗</span><span class="clickable-number">133%</span></span>
+            <span class="report-metric-detail">YoY growth, Q4 2024</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Executive Summary -->
+      <div class="report-section-title">Executive Summary</div>
+      <p class="report-text">
+        DataBao delivered exceptional results in Q4 2024, with record quarterly revenue of $287 million representing 34% year-over-year growth. This performance exceeded analyst expectations by 12% and caps off a transformative year for the company.
+      </p>
+      
+      <div class="report-callout">
+        <div class="report-callout-label">Key Takeaway:</div>
+        <div class="report-callout-text">The combination of strong enterprise adoption, successful geographic expansion, and the launch of Platform 3.0 positions DataBao for continued growth in 2025.</div>
+      </div>
+      
+      <p class="report-text">
+        The quarter was marked by several significant milestones, including crossing the $1 billion ARR threshold, opening our Singapore regional headquarters, and launching the most significant platform update in company history.
+      </p>
+      
+      <!-- Performance Trends -->
+      <div class="report-section-title">Performance Trends</div>
+      <div class="report-charts-grid">
+        <div class="report-chart">
+          <div class="report-chart-header">
+            <div>
+              <div class="report-chart-title">Quarterly Revenue</div>
+              <div class="report-chart-subtitle">Last 8 quarters (in millions)</div>
+            </div>
+            <div class="report-chart-value">
+              <div class="report-chart-number"><span class="clickable-number">$287M</span></div>
+              <div class="report-chart-change">+ <span class="clickable-number">34%</span> YoY</div>
+            </div>
+          </div>
+          <div class="report-chart-visual">
+            <div class="report-chart-bar" style="height: 35%; background: #10b981;"></div>
+            <div class="report-chart-bar" style="height: 40%; background: #10b981;"></div>
+            <div class="report-chart-bar" style="height: 48%; background: #10b981;"></div>
+            <div class="report-chart-bar" style="height: 52%; background: #10b981;"></div>
+            <div class="report-chart-bar" style="height: 60%; background: #10b981;"></div>
+            <div class="report-chart-bar" style="height: 68%; background: #10b981;"></div>
+            <div class="report-chart-bar" style="height: 80%; background: #10b981;"></div>
+            <div class="report-chart-bar" style="height: 100%; background: #10b981;"></div>
+          </div>
+          <div class="report-chart-labels">
+            <span>Q1 '23</span><span>Q2 '23</span><span>Q3 '23</span><span>Q4 '23</span><span>Q1 '24</span><span>Q2 '24</span><span>Q3 '24</span><span>Q4 '24</span>
+          </div>
+        </div>
+        
+        <div class="report-chart">
+          <div class="report-chart-header">
+            <div>
+              <div class="report-chart-title">Total Customers</div>
+              <div class="report-chart-subtitle">Last 8 quarters</div>
+            </div>
+            <div class="report-chart-value">
+              <div class="report-chart-number"><span class="clickable-number">2,847</span></div>
+              <div class="report-chart-change">+ 32% YoY</div>
+            </div>
+          </div>
+          <div class="report-chart-visual">
+            <div class="report-chart-bar" style="height: 40%; background: #8b5cf6;"></div>
+            <div class="report-chart-bar" style="height: 48%; background: #8b5cf6;"></div>
+            <div class="report-chart-bar" style="height: 55%; background: #8b5cf6;"></div>
+            <div class="report-chart-bar" style="height: 62%; background: #8b5cf6;"></div>
+            <div class="report-chart-bar" style="height: 70%; background: #8b5cf6;"></div>
+            <div class="report-chart-bar" style="height: 80%; background: #8b5cf6;"></div>
+            <div class="report-chart-bar" style="height: 90%; background: #8b5cf6;"></div>
+            <div class="report-chart-bar" style="height: 100%; background: #8b5cf6;"></div>
+          </div>
+          <div class="report-chart-labels">
+            <span>Q1 '23</span><span>Q2 '23</span><span>Q3 '23</span><span>Q4 '23</span><span>Q1 '24</span><span>Q2 '24</span><span>Q3 '24</span><span>Q4 '24</span>
+          </div>
+        </div>
+        
+        <div class="report-chart">
+          <div class="report-chart-header">
+            <div>
+              <div class="report-chart-title">Gross Margin</div>
+              <div class="report-chart-subtitle">Last 8 quarters (%)</div>
+            </div>
+            <div class="report-chart-value">
+              <div class="report-chart-number"><span class="clickable-number">78%</span></div>
+              <div class="report-chart-change">+ 2pts YoY</div>
+            </div>
+          </div>
+          <div class="report-chart-visual">
+            <div class="report-chart-bar" style="height: 88%; background: #ec4899;"></div>
+            <div class="report-chart-bar" style="height: 90%; background: #ec4899;"></div>
+            <div class="report-chart-bar" style="height: 91%; background: #ec4899;"></div>
+            <div class="report-chart-bar" style="height: 93%; background: #ec4899;"></div>
+            <div class="report-chart-bar" style="height: 94%; background: #ec4899;"></div>
+            <div class="report-chart-bar" style="height: 96%; background: #ec4899;"></div>
+            <div class="report-chart-bar" style="height: 98%; background: #ec4899;"></div>
+            <div class="report-chart-bar" style="height: 100%; background: #ec4899;"></div>
+          </div>
+          <div class="report-chart-labels">
+            <span>Q1 '23</span><span>Q2 '23</span><span>Q3 '23</span><span>Q4 '23</span><span>Q1 '24</span><span>Q2 '24</span><span>Q3 '24</span><span>Q4 '24</span>
+          </div>
+        </div>
+        
+        <div class="report-chart">
+          <div class="report-chart-header">
+            <div>
+              <div class="report-chart-title">Net Revenue Retention</div>
+              <div class="report-chart-subtitle">Last 8 quarters (%)</div>
+            </div>
+            <div class="report-chart-value">
+              <div class="report-chart-number"><span class="clickable-number">128%</span></div>
+              <div class="report-chart-change">+ 10pts YoY</div>
+            </div>
+          </div>
+          <div class="report-chart-visual">
+            <div class="report-chart-bar" style="height: 75%; background: #f59e0b;"></div>
+            <div class="report-chart-bar" style="height: 78%; background: #f59e0b;"></div>
+            <div class="report-chart-bar" style="height: 80%; background: #f59e0b;"></div>
+            <div class="report-chart-bar" style="height: 83%; background: #f59e0b;"></div>
+            <div class="report-chart-bar" style="height: 88%; background: #f59e0b;"></div>
+            <div class="report-chart-bar" style="height: 92%; background: #f59e0b;"></div>
+            <div class="report-chart-bar" style="height: 96%; background: #f59e0b;"></div>
+            <div class="report-chart-bar" style="height: 100%; background: #f59e0b;"></div>
+          </div>
+          <div class="report-chart-labels">
+            <span>Q1 '23</span><span>Q2 '23</span><span>Q3 '23</span><span>Q4 '23</span><span>Q1 '24</span><span>Q2 '24</span><span>Q3 '24</span><span>Q4 '24</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Financial Highlights -->
+      <div class="report-section-title" style="margin-top: 32px;">Financial Highlights</div>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Q4 2024</th>
+            <th>Q4 2023</th>
+            <th>Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Revenue</td>
+            <td>$287M</td>
+            <td>$214M</td>
+            <td class="positive">+34%</td>
+          </tr>
+          <tr>
+            <td>Gross Profit</td>
+            <td>$224M</td>
+            <td>$163M</td>
+            <td class="positive">+37%</td>
+          </tr>
+          <tr>
+            <td>Gross Margin</td>
+            <td>78%</td>
+            <td>76%</td>
+            <td class="positive">+200bps</td>
+          </tr>
+          <tr>
+            <td>Operating Expenses</td>
+            <td>$198M</td>
+            <td>$172M</td>
+            <td class="positive">+15%</td>
+          </tr>
+          <tr>
+            <td>Free Cash Flow</td>
+            <td>$42M</td>
+            <td>$18M</td>
+            <td class="positive">+133%</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <!-- Customer Metrics -->
+      <div class="report-section-title" style="margin-top: 32px;">Customer Metrics</div>
+      <p class="report-text">
+        The enterprise segment continued to drive growth, with customers on contracts exceeding $100K annually now representing 72% of total revenue, up from 64% in the prior year.
+      </p>
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Q4 2024</th>
+            <th>Q4 2023</th>
+            <th>Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Total Customers</td>
+            <td>2,847</td>
+            <td>2,156</td>
+            <td class="positive">+32%</td>
+          </tr>
+          <tr>
+            <td>Enterprise Customers ($100K+)</td>
+            <td>312</td>
+            <td>265</td>
+            <td class="positive">+18%</td>
+          </tr>
+          <tr>
+            <td>Net Revenue Retention</td>
+            <td>128%</td>
+            <td>118%</td>
+            <td class="positive">+10pts</td>
+          </tr>
+          <tr>
+            <td>Gross Revenue Retention</td>
+            <td>95%</td>
+            <td>93%</td>
+            <td class="positive">+2pts</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <!-- Outlook & Guidance -->
+      <div class="report-section-title" style="margin-top: 32px;">Outlook & Guidance</div>
+      <p class="report-text">
+        Based on our strong performance and market position, we are providing the following guidance:
+      </p>
+      
+      <div class="report-guidance-subtitle">Q1 2025 Guidance</div>
+      <div class="report-guidance-list">
+        <div class="report-guidance-item">Revenue: $295M - $302M (28-31% YoY growth)</div>
+        <div class="report-guidance-item">Non-GAAP Operating Margin: 8-10%</div>
+      </div>
+      
+      <div class="report-guidance-subtitle">Full Year 2025 Guidance</div>
+      <div class="report-guidance-list">
+        <div class="report-guidance-item">Revenue: $1.25B - $1.30B (25-30% YoY growth)</div>
+        <div class="report-guidance-item">Non-GAAP Operating Margin: 10-12%</div>
+        <div class="report-guidance-item">Free Cash Flow: $150M+</div>
+      </div>
+      
+      <div class="report-footer-callout">
+        <div class="report-callout-label">Capital Allocation:</div>
+        <div class="report-callout-text">The Board has approved a $500M stock buyback program, reflecting confidence in our long-term trajectory and commitment to shareholder returns.</div>
+      </div>
+    </div>
+  </div>
+      </div>
+    </aside>
+  </main>
+
+<script>
+    // Toggle send button disabled state based on input content
+    const chatInput = document.querySelector('.chat-input');
+    const sendBtn = document.querySelector('.send-btn');
+
+    chatInput.addEventListener('input', function() {
+      sendBtn.disabled = this.value.trim() === '';
+    });
+
+    // Studio card click handler - show generating item with relevant content
+    const studioCards = document.querySelectorAll('.studio-card');
+    const generatingItem = document.getElementById('generating-item');
+    const generatingTitle = document.getElementById('generating-title');
+    const generatingDescription = document.getElementById('generating-description');
+    const relatedArtifactsList = document.querySelector('.related-artifacts-list');
+    const reportPanel = document.getElementById('report-panel');
+    const reportCloseHeader = document.getElementById('report-close-header');
+    const studioPanelContent = document.getElementById('studio-panel-content');
+    const studioDefaultContent = document.getElementById('studio-default-content');
+    const studioPanelTitle = document.getElementById('studio-panel-title');
+    const mainContainer = document.querySelector('.main-container');
+    
+    let generationTimeout = null;
+    
+    // Function to close report and restore default view
+    function closeReportView() {
+      reportPanel.classList.remove('visible');
+      studioDefaultContent.style.display = 'block';
+      studioPanelContent.classList.remove('showing-report');
+      mainContainer.classList.remove('expanded-studio');
+      studioPanelTitle.innerHTML = 'Artifacts';
+      reportCloseHeader.style.display = 'none';
+    }
+    
+    // Close report panel and show default content
+    reportCloseHeader.addEventListener('click', closeReportView);
+    
+    // Breadcrumb click to return to main artifacts
+    studioPanelTitle.addEventListener('click', function(e) {
+      if (e.target.classList.contains('panel-title-breadcrumb')) {
+        closeReportView();
+      }
+    });
+
+    // Clickable column items in data sources - AI explanation in chat
+    const columnExplanations = {
+      'id': 'Primary key field that uniquely identifies each record in the table. Auto-incremented integer values ensure each row has a unique identifier for efficient indexing and foreign key relationships.',
+      'email': 'Stores user email addresses (VARCHAR 255). Used for authentication, communication, and as a unique identifier. Should be validated for proper email format and uniqueness.',
+      'full_name': 'User\'s complete name stored as VARCHAR(100). Combines first and last name for display purposes. Consider splitting into separate fields for advanced name-based queries.',
+      'created_at': 'Timestamp recording when the record was created. Automatically set on INSERT. Essential for tracking user registration dates, data auditing, and time-based analytics.',
+      'is_active': 'Boolean flag indicating if the user account is active. Used for soft-delete functionality and account status management without removing data.',
+      'user_id': 'Foreign key referencing the users table. Links orders to specific customers. Enables JOIN operations for customer purchase history analysis.',
+      'total_amount': 'Decimal field (10,2) storing the total order value. Calculated from order items or stored directly. Critical for revenue reporting and financial analysis.',
+      'status': 'ENUM field tracking order lifecycle: pending, processing, shipped, delivered, cancelled. Used for order management workflows and status-based filtering.',
+      'order_date': 'Timestamp of when the order was placed. Key field for time-series analysis, sales trends, and cohort-based reporting.',
+      'name': 'Product or category name as VARCHAR. Displayed to users and used in search functionality. Should support full-text indexing for search optimization.',
+      'price': 'Product price stored as DECIMAL(10,2) for precise currency calculations. Avoid floating-point types for monetary values to prevent rounding errors.',
+      'category_id': 'Foreign key linking products to categories. Enables hierarchical product organization and category-based filtering and analytics.',
+      'slug': 'URL-friendly version of the name. Lowercase, hyphenated string used for SEO-friendly URLs. Should be unique within the table.',
+      'order_id': 'Foreign key referencing the orders table. Links line items to their parent order for order composition queries.',
+      'product_id': 'Foreign key referencing products. Identifies which product was purchased in this line item.',
+      'quantity': 'Integer count of how many units of the product were ordered. Used for inventory management and revenue calculations.',
+      'unit_price': 'Price per unit at time of purchase (DECIMAL 10,2). Stored separately from product price to preserve historical pricing.'
+    };
+
+    // Create or get explanations container
+    function getExplanationsContainer() {
+      let container = document.getElementById('ai-explanations-container');
+      if (!container) {
+        container = document.createElement('div');
+        container.id = 'ai-explanations-container';
+        const summarySection = document.querySelector('.summary-section');
+        summarySection.insertAdjacentElement('afterend', container);
+      }
+      return container;
+    }
+
+    document.querySelectorAll('.column-item').forEach(item => {
+      item.addEventListener('click', function() {
+        const columnName = this.querySelector('.column-name').textContent.trim();
+        const columnType = this.querySelector('.column-type').textContent.trim();
+        const tableName = this.closest('.table-item').querySelector('.table-name').textContent.trim();
+        const explanation = columnExplanations[columnName] || `This column (${columnName}) stores ${columnType} data in the ${tableName} table.`;
+        
+        // Create AI response message
+        const aiMessage = document.createElement('div');
+        aiMessage.style.cssText = 'background: var(--bg-secondary); border-radius: 0px; padding: 16px; margin-top: 16px; border-left: 3px solid var(--accent-purple);';
+        aiMessage.innerHTML = `
+          <div style="font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+            </svg>
+            <strong style="color: var(--accent-purple);">${tableName}.${columnName}</strong> <span style="color: var(--text-tertiary);">(${columnType})</span>
+          </div>
+          <div style="font-size: 14px; line-height: 1.6; color: var(--text-primary);">${explanation}</div>
+        `;
+        
+        // Append to explanations container
+        const container = getExplanationsContainer();
+        container.appendChild(aiMessage);
+        
+        // Scroll to the message
+        aiMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+
+    // Clickable numbers in report - AI explanation in chat
+    const chatContent = document.querySelector('.chat-content');
+    const numberExplanations = {
+      '$287M': 'Total quarterly revenue of $287 million represents a 34% year-over-year increase, driven primarily by strong enterprise adoption and the successful launch of Platform 3.0.',
+      '34%': 'The 34% year-over-year growth rate exceeded analyst expectations by 12% and represents the fastest growth rate in the company\'s history.',
+      '45.2%': 'Enterprise segment contributes 45.2% of total revenue, up from 38% last year, indicating successful upmarket expansion strategy.',
+      '28.1%': 'Mid-market segment at 28.1% shows steady growth with increasing deal sizes averaging $45K annually.',
+      '17.9%': 'SMB segment represents 17.9% of revenue with strong self-serve adoption and low customer acquisition costs.',
+      '8.8%': 'Other revenue streams (8.8%) include professional services, training, and partner ecosystem contributions.',
+      '128%': 'Net Revenue Retention of 128% indicates strong expansion within existing customers, with upsells exceeding churn by 28 percentage points.',
+      '78%': 'Gross margin of 78% reflects operational efficiency improvements and economies of scale in cloud infrastructure.',
+      '2,847': 'Total active customer count of 2,847 represents 32% year-over-year growth, with enterprise customers driving majority of new ARR.',
+      '18%': 'Enterprise customer growth of 18% YoY with $100K+ contracts now numbering 312, up from 265 last year.',
+      '133%': 'Free cash flow growth of 133% YoY demonstrates improving unit economics and operational leverage.',
+      '$1B': 'Crossing the $1 billion ARR threshold represents a major milestone, achieved 18 months ahead of initial projections.'
+    };
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('clickable-number')) {
+        const numberText = e.target.textContent.trim();
+        const explanation = numberExplanations[numberText] || `This metric (${numberText}) is a key performance indicator from the Q4 2024 report.`;
+        
+        // Create AI response message
+        const aiMessage = document.createElement('div');
+        aiMessage.style.cssText = 'background: var(--bg-secondary); border-radius: 0px; padding: 16px; margin-top: 16px; border-left: 3px solid var(--accent-blue);';
+        aiMessage.innerHTML = `
+          <div style="font-size: 12px; color: var(--text-tertiary); margin-bottom: 8px; display: flex; align-items: center; gap: 6px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 16v-4M12 8h.01"/>
+            </svg>
+            Explaining: <strong style="color: var(--accent-blue);">${numberText}</strong>
+          </div>
+          <div style="font-size: 14px; line-height: 1.6; color: var(--text-primary);">${explanation}</div>
+        `;
+        
+        // Append to explanations container
+        const container = getExplanationsContainer();
+        container.appendChild(aiMessage);
+        
+        // Scroll to the message
+        aiMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+
+    studioCards.forEach(card => {
+      card.addEventListener('click', function() {
+        const title = this.dataset.title;
+        const description = this.dataset.description;
+        const type = this.dataset.type;
+        
+        // Clear any existing timeout
+        if (generationTimeout) {
+          clearTimeout(generationTimeout);
+        }
+        
+        generatingTitle.textContent = title;
+        generatingDescription.textContent = description;
+        generatingItem.style.display = 'flex';
+        
+        // After 6 seconds, hide generating and add completed artifact
+        generationTimeout = setTimeout(() => {
+          generatingItem.style.display = 'none';
+          
+          // Create artifact name based on type
+          const artifactNames = {
+            report: 'New Report',
+            table: 'Data Table',
+            signals: 'Signal Analysis',
+            slides: 'Presentation Slides'
+          };
+          
+          const artifactTypes = {
+            report: 'Report',
+            table: 'Table',
+            signals: 'Signals',
+            slides: 'Slides'
+          };
+          
+          // Create new artifact item
+          const newArtifact = document.createElement('div');
+          newArtifact.className = 'related-artifact-item';
+          newArtifact.dataset.artifactType = type;
+          newArtifact.innerHTML = `
+            <div class="related-artifact-info">
+              <span class="related-artifact-name">${artifactNames[type]}</span>
+              <span class="related-artifact-meta">${artifactTypes[type]} · Just now</span>
+            </div>
+          `;
+          
+          // Add click handler to show report panel for report type
+          if (type === 'report') {
+            newArtifact.addEventListener('click', function() {
+              studioDefaultContent.style.display = 'none';
+              reportPanel.classList.add('visible');
+              studioPanelContent.classList.add('showing-report');
+              mainContainer.classList.add('expanded-studio');
+              studioPanelTitle.innerHTML = '<span class="panel-title-breadcrumb">Artifacts /</span> Q4 2024 Quarterly Report';
+              reportCloseHeader.style.display = 'flex';
+            });
+          }
+          
+          // Insert after generating item (at the top of actual artifacts)
+          generatingItem.insertAdjacentElement('afterend', newArtifact);
+        }, 3000);
+      });
+    });
+  </script>
+</body>
+</html>
